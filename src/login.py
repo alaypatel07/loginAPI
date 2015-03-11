@@ -3,6 +3,7 @@ __author__ = 'alay'
 from tornado.web import RequestHandler
 from src import handledoc
 from src import hashit
+import traceback
 
 
 class LoginHandler(RequestHandler):
@@ -28,7 +29,11 @@ class LoginHandler(RequestHandler):
                 self.write(line)
             self.finish()
         else:
-            self.finish('{"status":' + str(status_code) + ', "token":' + str(self.token[0]) + '}')
+            if status_code is not 200:
+                token = ""
+            else:
+                token = ', "token":"' + str(self.token[0])
+            self.finish('{"status":' + str(status_code) + token + '"}')
 
     def post(self, *args, **kwargs):
         user = dict()
@@ -46,4 +51,4 @@ class LoginHandler(RequestHandler):
             user.pop('password')
             user_doc = handledoc.HandleDoc(user)
             doc = user_doc.insert_doc("logged_in_users", user)
-            self.write_error(200)
+            self.send_error(200)
