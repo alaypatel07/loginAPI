@@ -6,7 +6,6 @@ from src import handledoc
 import traceback
 
 
-
 class RegisterHandler(RequestHandler):
     def write_error(self, status_code, **kwargs):
         """Override to implement custom error pages.
