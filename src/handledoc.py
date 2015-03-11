@@ -1,7 +1,7 @@
 __author__ = 'alay'
 
 import pycouchdb
-localhost = "http://127.0.0.1:5984"
+localhost = "http://admin:admin@127.0.0.1:5984"
 successful_msg = {"Success": True}
 failure_msg = {"Success": False}
 

@@ -12,8 +12,8 @@ class LogoutHandler(RequestHandler):
         flag = user_doc.exists('logged_in_users')
         if flag is None:
             handledoc.failure_msg['error'] = 'tokenDoesntExist'
-            self.write(handledoc.failure_msg)
+            self.send_error(404)
         else:
             doc_id = flag['id']
             user_doc.db.delete(doc_id)
-            self.write(handledoc.successful_msg)
+            self.write(200)

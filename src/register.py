@@ -22,6 +22,6 @@ class RegisterHandler(RequestHandler):
         doc = user_data.exists("auth_user")
         if doc is None:
             user_data.insert_doc("auth_user", user)
-            self.write(handledoc.successful_msg)
+            self.send_error(200)
         else:
-            self.write(handledoc.failure_msg) #isAlreadyTaken: True,Error:
+            self.send_error(409)

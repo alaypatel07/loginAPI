@@ -18,7 +18,7 @@ class DataHandler(RequestHandler):
             token_expiry = user_doc.doc['expiry']
             timestamp = datetime.datetime.timestamp(datetime.datetime.now())
             if float(token_expiry) > timestamp:
-                self.write(handledoc.successful_msg)
+                self.send_error(200)
             else:
                 handledoc.failure_msg['error'] = 'tokenExpired'
-                self.write(handledoc.failure_msg)
+                self.send_error(403)
