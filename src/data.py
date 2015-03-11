@@ -34,7 +34,7 @@ class DataHandler(RequestHandler):
         user_doc = handledoc.HandleDoc(user)
         flag = user_doc.exists('logged_in_users')
         if flag is None:
-            self.write(handledoc.failure_msg)
+            self.send_error(403)
         else:
             doc_id = flag['id']
             token_expiry = user_doc.doc['expiry']
