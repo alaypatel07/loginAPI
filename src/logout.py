@@ -39,4 +39,4 @@ class LogoutHandler(RequestHandler):
         else:
             doc_id = flag['id']
             user_doc.db.delete(doc_id)
-            self.write(200)
+            self.send_error(200)
