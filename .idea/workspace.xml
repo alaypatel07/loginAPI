@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9138a993-2d08-4309-b63a-a224366d210a" name="Default" comment="admin:admin Problem eliminated&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data.py" afterPath="$PROJECT_DIR$/src/data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/handledoc.py" afterPath="$PROJECT_DIR$/src/handledoc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/login.py" afterPath="$PROJECT_DIR$/src/login.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/logout.py" afterPath="$PROJECT_DIR$/src/logout.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/register.py" afterPath="$PROJECT_DIR$/src/register.py" />
+    <list default="true" id="9138a993-2d08-4309-b63a-a224366d210a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="loginAPI.iws" />
@@ -386,7 +381,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426089877353</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HTTP Error Messages on Requests&#10;">
+      <created>1426093728876</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1426093728876</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -431,7 +432,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="admin:admin Problem eliminated&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin:admin Problem eliminated&#10;" />
+    <MESSAGE value="HTTP Error Messages on Requests&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="HTTP Error Messages on Requests&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
