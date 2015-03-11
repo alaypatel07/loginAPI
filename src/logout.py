@@ -2,6 +2,8 @@ __author__ = 'alay'
 
 from tornado.web import RequestHandler
 from src import handledoc
+import traceback
+
 
 class LogoutHandler(RequestHandler):
     def write_error(self, status_code, **kwargs):

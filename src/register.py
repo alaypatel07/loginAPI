@@ -3,6 +3,8 @@ __author__ = 'alay'
 
 from tornado.web import RequestHandler
 from src import handledoc
+import traceback
+
 
 
 class RegisterHandler(RequestHandler):

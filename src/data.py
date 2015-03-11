@@ -3,6 +3,7 @@ __author__ = 'alay'
 from tornado.web import RequestHandler
 from src import handledoc
 import datetime
+import traceback
 
 class DataHandler(RequestHandler):
     def write_error(self, status_code, **kwargs):
