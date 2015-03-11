@@ -43,4 +43,4 @@ class DataHandler(RequestHandler):
                 self.send_error(200)
             else:
                 handledoc.failure_msg['error'] = 'tokenExpired'
-                self.send_error(403)
+                self.send_error(408)
