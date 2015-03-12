@@ -14,7 +14,7 @@ class LogoutHandler(handler.LoginRequestHandler):
         user_doc = handledoc.HandleDoc(user)
         flag = user_doc.exists('logged_in_users')
         if flag is None:
-            handledoc.failure_msg['error'] = 'tokenDoesntExist'
+            # self.message = 'tokenDoesntExist'
             self.send_error(404)
         else:
             doc_id = flag['id']

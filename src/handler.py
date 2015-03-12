@@ -3,6 +3,7 @@ __author__ = 'alay'
 from tornado.web import RequestHandler
 from os.path import dirname
 import traceback
+import json
 
 
 class LoginRequestHandler(RequestHandler):
@@ -20,5 +21,8 @@ class LoginRequestHandler(RequestHandler):
         else:
             if self.message == '':
                 self.message = self._reason
+            message = dict()
+            message['status'] = str(status_code)
+            message['message'] =  self.message
             self.set_header('Content-Type', 'application/json')
-            self.finish('{"status":"' + str(status_code) + '", "message":"' + self.message + '"}')
+            self.finish(json.dumps(message))
