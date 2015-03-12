@@ -3,12 +3,13 @@ __author__ = 'alay'
 
 from tornado.web import RequestHandler
 from src import handledoc
+from src import hashit
+from src import handler
 import traceback
 
-
-class RegisterHandler(handledoc.LoginRequestHandler):
+class RegisterHandler(handler.LoginRequestHandler):
     def get(self, *args, **kwargs):
-        self.render('/home/alay/Documents/Projects/rajadhirajapi/templetes/register.html')
+        self.render(self.root + '/templetes/register.html')
 
     def post(self, *args, **kwargs):
         user = dict()
@@ -17,7 +18,7 @@ class RegisterHandler(handledoc.LoginRequestHandler):
         user['last_name'] = self.get_argument('last_name')
         user['email_id'] = self.get_argument('email_id')
         user['username'] = self.get_argument('username')
-        user['password'] = self.get_argument('password')
+        user['password'] = hashit.get_hash(self.get_argument('password'))
         query['username'] = user['username']
         user_data = handledoc.HandleDoc(query)
         doc = user_data.exists("auth_user")

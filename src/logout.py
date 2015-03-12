@@ -1,11 +1,12 @@
 __author__ = 'alay'
 
+import traceback
 from tornado.web import RequestHandler
 from src import handledoc
-import traceback
+from src import handler
 
 
-class LogoutHandler(handledoc.LoginRequestHandler):
+class LogoutHandler(handler.LoginRequestHandler):
     def post(self, *args, **kwargs):
         user = dict()
         token = self.get_argument('token')

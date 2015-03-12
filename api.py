@@ -9,14 +9,14 @@ from src import login
 from src import register
 from src import data
 from src import logout
-
+from src.handler import LoginRequestHandler
 
 define("port", default=8000, help="give the Port number for the server to run on", type=int)
 
 
-class IndexHandler(RequestHandler):
+class IndexHandler(LoginRequestHandler):
     def get(self, *args, **kwargs):
-        self.render("/home/alay/Documents/Projects/rajadhirajapi/templetes/index.html")
+        self.render(self.root + '/templetes/index.html')
     
 
 if __name__ == "__main__":

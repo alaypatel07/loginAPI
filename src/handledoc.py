@@ -3,33 +3,10 @@ __author__ = 'alay'
 import pycouchdb
 from tornado.web import RequestHandler
 import traceback
+import os.path
 
 
 localhost = "http://admin:admin@127.0.0.1:5984"
-
-
-class LoginRequestHandler(RequestHandler):
-    def write_error(self, status_code, **kwargs):
-        """Override to implement custom error pages.
-
-        ``write_error`` may call `write`, `render`, `set_header`, etc
-        to produce output as usual.
-
-        If this error was caused by an uncaught exception (including
-        HTTPError), an ``exc_info`` triple will be available as
-        ``kwargs["exc_info"]``.  Note that this exception may not be
-        the "current" exception for purposes of methods like
-        ``sys.exc_info()`` or ``traceback.format_exc``.
-        """
-        if self.settings.get("serve_traceback") and "exc_info" in kwargs:
-            # in debug mode, try to send a traceback
-            self.set_header('Content-Type', 'application/json')
-            for line in traceback.format_exception(*kwargs["exc_info"]):
-                self.write(line)
-            self.finish()
-        else:
-            self.set_header('Content-Type', 'application/json')
-            self.finish('{"status":' + str(status_code) + '", message":' + self._reason + '"}')
 
 
 class GetString(dict):
@@ -63,16 +40,3 @@ class HandleDoc():
         db = self.db_server.database(db_name)
         return db.save(self.doc)
 
-
-
-
-if __name__ == "__main__":
-    user = {"username":"alaypatel07", "password":"password"}
-    user_doc = HandleDoc(user)
-    temp = user_doc.exists('auth_user')
-    print(user_doc.doc)
-    # if  temp is None:
-    #     a = user_doc.insert_doc('testdb', user)
-    #     print(a)
-    # else:
-    #     print(temp)
