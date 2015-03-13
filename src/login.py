@@ -7,6 +7,7 @@ from src import hashit
 from src import handler
 from src import handledoc
 from src import handler
+from src.handletoken import HandleToken
 import traceback
 
 
@@ -27,9 +28,15 @@ class LoginHandler(handler.LoginRequestHandler):
             self.token = hashit.get_hash_time(user['username'], user['password'])
             user['token'] = self.token[0]
             user['expiry'] = self.token[1]
-            user['ip'] = self.request.remote_ip
+            user['rights'] = 'admin'
+            # user['ip'] = self.request.remote_ip
             user.pop('password')
-            user_doc = handledoc.HandleDoc(user)
-            doc = user_doc.insert_doc("logged_in_users", user)
-            self.message = str(self.token[0])
-            self.send_error(200)
+            # user_doc = handledoc.HandleDoc(user)
+            # doc = user_doc.insert_doc("logged_in_users", user)
+            # self.message = str(self.token[0])
+            # self.send_error(200)
+            token_handler = HandleToken(user['token'], user['username'], user['rights'])
+            if token_handler.set_token():
+                self.send_error(200)
+            else:
+                self.send_error(500)
