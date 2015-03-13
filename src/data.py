@@ -23,5 +23,5 @@ class DataHandler(handler.LoginRequestHandler):
             if float(token_expiry) > timestamp:
                 self.send_error(200)
             else:
-                handledoc.failure_msg['error'] = 'tokenExpired'
+                self.message = 'tokenExpired'
                 self.send_error(408)
