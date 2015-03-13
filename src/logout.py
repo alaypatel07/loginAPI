@@ -4,19 +4,17 @@ import traceback
 from tornado.web import RequestHandler
 from src import handledoc
 from src import handler
+from src.handletoken import HandleToken
 
 
 class LogoutHandler(handler.LoginRequestHandler):
     def post(self, *args, **kwargs):
-        user = dict()
         token = self.get_argument('token')
-        user['token'] = token
-        user_doc = handledoc.HandleDoc(user)
-        flag = user_doc.exists('logged_in_users')
-        if flag is None:
-            # self.message = 'tokenDoesntExist'
-            self.send_error(404)
+        token_handler = HandleToken(token)
+        if token_handler.exists():
+            if token_handler.del_token():
+                del token_handler
+                self.send_error(200)
         else:
-            doc_id = flag['id']
-            user_doc.db.delete(doc_id)
-            self.send_error(200)
+            self.message = "tokenExpired"
+            self.send_error(404)

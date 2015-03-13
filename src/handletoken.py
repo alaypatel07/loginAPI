@@ -12,7 +12,8 @@ class HandleToken():
         self.token = token
         self.username = username
         self.rights = rights
-        self.data = json.dumps(dict(username=self.username, rights=self.rights))
+        self.json_data = json.dumps(dict(username=self.username, rights=self.rights))
+        self.data = dict(username=self.username, rights=self.rights)
 
     def set_token(self):
         db = redis.StrictRedis()
@@ -29,4 +30,5 @@ class HandleToken():
     def get_data(self):
         db = redis.StrictRedis()
         if self.exists():
-            return db.get(self.token)
+            self.json_data  = db.get(self.token).decode("utf-8")
+            self.data = json.loads(self.json_data)

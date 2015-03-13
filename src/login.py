@@ -15,28 +15,26 @@ class LoginHandler(handler.LoginRequestHandler):
     def get(self, *args, **kwargs):
         self.render(self.root + '/templetes/login.html')
 
-
     def post(self, *args, **kwargs):
         user = dict()
         user['username'] = self.get_argument('username')
         user['password'] = hashit.get_hash(self.get_argument('password'))
-        doc = handledoc.HandleDoc(user)
-        flag = doc.exists("auth_user")
+        doc = handledoc.HandleDoc(user, "auth_user")
+        flag = doc.exists()
         if flag is None:
             self.send_error(404)
         else:
-            self.token = hashit.get_hash_time(user['username'], user['password'])
-            user['token'] = self.token[0]
-            user['expiry'] = self.token[1]
+            token = hashit.get_hash_time(user['username'], user['password'])
+            user['token'] = token[0]
+            user['expiry'] = token[1]
             user['rights'] = 'admin'
-            # user['ip'] = self.request.remote_ip
             user.pop('password')
-            # user_doc = handledoc.HandleDoc(user)
-            # doc = user_doc.insert_doc("logged_in_users", user)
-            # self.message = str(self.token[0])
-            # self.send_error(200)
+
             token_handler = HandleToken(user['token'], user['username'], user['rights'])
             if token_handler.set_token():
+                self.message = token_handler.token
+                del token_handler
                 self.send_error(200)
             else:
+                del token_handler
                 self.send_error(500)

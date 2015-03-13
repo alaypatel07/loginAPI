@@ -1,6 +1,5 @@
 __author__ = 'alay'
 
-
 from tornado.web import RequestHandler
 from src import handledoc
 from src import hashit
@@ -20,10 +19,10 @@ class RegisterHandler(handler.LoginRequestHandler):
         user['username'] = self.get_argument('username')
         user['password'] = hashit.get_hash(self.get_argument('password'))
         query['username'] = user['username']
-        user_data = handledoc.HandleDoc(query)
-        doc = user_data.exists("auth_user")
+        user_data = handledoc.HandleDoc(query, "auth_user")
+        doc = user_data.exists()
         if doc is None:
-            user_data.insert_doc("auth_user", user)
+            user_data.insert_doc(user)
             self.send_error(200)
         else:
             self.send_error(409)

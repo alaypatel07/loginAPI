@@ -24,7 +24,7 @@ if __name__ == "__main__":
         (r'/', IndexHandler),
         (r'/logout', logout.LogoutHandler),
         (r'/login', login.LoginHandler),
-        (r'/data', data.DataHandler),
+        (r'/data(.*)', data.DataHandler),
         (r'/register', register.RegisterHandler)
     ])
     server = HTTPServer(api)
