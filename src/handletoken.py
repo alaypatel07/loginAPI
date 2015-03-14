@@ -17,7 +17,7 @@ class HandleToken():
 
     def set_token(self):
         db = redis.StrictRedis()
-        return db.setex(self.token, ttl * 24 * 60 * 60, self.data)
+        return db.setex(self.token, ttl * 24 * 60 * 60, self.json_data)
 
     def exists(self):
         db = redis.StrictRedis()
@@ -30,5 +30,5 @@ class HandleToken():
     def get_data(self):
         db = redis.StrictRedis()
         if self.exists():
-            self.json_data  = db.get(self.token).decode("utf-8")
+            self.json_data = db.get(self.token).decode("utf-8")
             self.data = json.loads(self.json_data)

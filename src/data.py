@@ -25,6 +25,8 @@ def get_data(url, token_handler):
                 data = data[each_slug]
             except KeyError as key_error:
                 return None
+            except TypeError as type_error:
+                return None
     return data
 
 
