@@ -23,6 +23,6 @@ class LoginRequestHandler(RequestHandler):
                 self.message = self._reason
             message = dict()
             message['status'] = str(status_code)
-            message['message'] =  self.message
+            message['reason'] =  self.message
             self.set_header('Content-Type', 'application/json')
             self.finish(json.dumps(message))
