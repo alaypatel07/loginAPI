@@ -7,7 +7,7 @@ from src import hashit
 
 class LoginHandler(RequestHandler):
     def get(self, *args, **kwargs):
-        self.render("/home/alay/Documents/Projects/rajadhirajapi/templetes/login.html")
+        self.render("../templates/login.html")
 
     def post(self, *args, **kwargs):
         user = dict()

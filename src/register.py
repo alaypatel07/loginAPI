@@ -7,7 +7,7 @@ from src import handledoc
 
 class RegisterHandler(RequestHandler):
     def get(self, *args, **kwargs):
-        self.render('/home/alay/Documents/Projects/rajadhirajapi/templetes/register.html')
+        self.render('../templates/register.html')
 
     def post(self, *args, **kwargs):
         user = dict()

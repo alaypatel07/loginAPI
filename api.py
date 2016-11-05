@@ -16,7 +16,7 @@ define("port", default=8000, help="give the Port number for the server to run on
 
 class IndexHandler(RequestHandler):
     def get(self, *args, **kwargs):
-        self.render("/home/alay/Documents/Projects/rajadhirajapi/templetes/index.html")
+        self.render("templates/index.html")
     
 
 if __name__ == "__main__":
